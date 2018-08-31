@@ -13,7 +13,7 @@ uses
   cxLookAndFeels, cxLookAndFeelPainters, IB_Access, uFormStatus, IBOExtract,
   IB_Process, IB_Script, Generics.Collections, StrUtils, uModel, uSPITCPBase,
   cxDropDownEdit, Math, cxCalendar, cxBlobEdit, cxMemo, uFormSQL, ShellAPI,
-  uThreadAtualizacao, uAdminPriv;
+  uAdminPriv;
 
 const
   WM_AFTER_SHOW = WM_USER + $1123;
@@ -96,7 +96,6 @@ type
     CheckBoxDependencia: TCheckBox;
     LabelVersao: TLabel;
     BitBtnReconectar: TBitBtn;
-    LabelNovaVersao: TLabel;
     IB_QueryDadosOrigem: TIB_Query;
     IBOQueryGeneratorsDestino: TIBOQuery;
     procedure FormCreate(Sender: TObject);
@@ -117,7 +116,6 @@ type
     procedure EditArquivoOrigemEnter(Sender: TObject);
     procedure EditArquivoOrigemExit(Sender: TObject);
     procedure BitBtnReconectarClick(Sender: TObject);
-    procedure LabelNovaVersaoClick(Sender: TObject);
   private
     { Private declarations }
     FImportados, FErros, FTabelas : Int64;
@@ -127,11 +125,9 @@ type
     FConfigFileName: string;
     FTmpConfigFileName: string;
     FConfig: TConfig;
-    FAtualizacaoAutomatica: TThreadAtualizacao;
 
     procedure WmAfterShow(var Dummy : Boolean); message WM_AFTER_SHOW;
     procedure ReOpenApp;
-    procedure OnUpdateReady(Sender : TObject);
     procedure AddFileSizeToLog(const ANewDBFileName, AOldDBFileName : string);
 
     procedure MensIgnorarTabela;
@@ -1011,11 +1007,6 @@ begin
   cxDateEditFiltro.Date := IncMonth(Date, -12);
 
   LoadVersion;
-
-  FAtualizacaoAutomatica := TThreadAtualizacao.Create;
-  FAtualizacaoAutomatica.OnUpdateReady := OnUpdateReady;
-  FAtualizacaoAutomatica.VersaoAtual := LabelVersao.Caption;
-  FAtualizacaoAutomatica.Start;
 end;
 
 procedure TFormDataCopy.FormDestroy(Sender: TObject);
@@ -1028,13 +1019,6 @@ begin
 
   if Assigned(FConfig) then
     FreeAndNil(FConfig);
-
-  if Assigned(FAtualizacaoAutomatica) then
-  begin
-    if FAtualizacaoAutomatica.IsRunning then
-      FAtualizacaoAutomatica.Terminate;
-    FreeAndNil(FAtualizacaoAutomatica);
-  end;
 end;
 
 procedure TFormDataCopy.FormShow(Sender: TObject);
@@ -1563,27 +1547,6 @@ begin
   Result := FConfigFileName <> EmptyStr;
 end;
 
-procedure TFormDataCopy.LabelNovaVersaoClick(Sender: TObject);
-var
-  lNome : string;
-  lNomeOld: string;
-  lNomeNew: string;
-begin
-  lNome := Application.ExeName;
-  lNomeOld := StringReplace(lNome, '.exe', '.old', [rfIgnoreCase]);
-  lNomeNew := StringReplace(lNome, '.exe', '.new', [rfIgnoreCase]);
-
-  if FileExists(lNomeNew) then
-  begin
-    if FileExists(lNomeOld) then
-      DeleteFile(lNomeOld);
-
-    RenameFile(lNome, lNomeOld);
-    RenameFile(lNomeNew, lNome);
-    ReOpenApp;
-  end;
-end;
-
 procedure TFormDataCopy.LoadVersion;
 var
   Exe: string;
@@ -1640,11 +1603,6 @@ end;
 procedure TFormDataCopy.MostraPerigo(const AMens: string);
 begin
   Application.MessageBox(PChar(AMens), 'Atenção', MB_ICONWARNING);
-end;
-
-procedure TFormDataCopy.OnUpdateReady(Sender: TObject);
-begin
-  LabelNovaVersao.Visible := True;
 end;
 
 function TFormDataCopy.ProcessarRegistrosTabela(const ATotalRegistros : Int64;

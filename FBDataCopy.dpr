@@ -9,9 +9,7 @@ uses
   uModel in 'uModel.pas',
   uFormSQL in 'uFormSQL.pas' {FormSQL},
   uAdminPriv in 'uAdminPriv.pas',
-  uThreadAtualizacao in 'uThreadAtualizacao.pas',
-  uMapeamentoDLLCrypto in '..\..\dlls\common\mapeamento\uMapeamentoDLLCrypto.pas',
-  LogHook in '..\..\common\util\LogHook.pas';
+  LogHook in 'LogHook.pas';
 
 {$R *.res}
 

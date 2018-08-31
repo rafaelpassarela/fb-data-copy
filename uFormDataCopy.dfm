@@ -47,26 +47,6 @@ object FormDataCopy: TFormDataCopy
     Alignment = taRightJustify
     Caption = '1.0.0.0'
   end
-  object LabelNovaVersao: TLabel
-    Left = 450
-    Top = 25
-    Width = 372
-    Height = 13
-    Cursor = crHandPoint
-    Alignment = taRightJustify
-    Caption = 'UMA NOVA VERS'#195'O FOI LOCALIZADA. CLIQUE AQUI PARA APLICAR !'
-    Color = clRed
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    Transparent = False
-    Visible = False
-    OnClick = LabelNovaVersaoClick
-  end
   object EditArquivoOrigem: TEdit
     Left = 8
     Top = 54
@@ -664,7 +644,7 @@ object FormDataCopy: TFormDataCopy
     Left = 276
     Top = 302
     Bitmap = {
-      494C010105000900800010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010105000900840010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
