@@ -64,3 +64,13 @@ __recovery/
 
 # Castalia statistics file (since XE7 Castalia is distributed with Delphi)
 *.stat
+
+# Delphi compiler-generated config
+*.jdbg
+*.skincfg
+
+# Exeptions
+!_Tools/*.exe
+!_Tools/ResourceList.dll
+!**/*.dll
+!**/*.exe
