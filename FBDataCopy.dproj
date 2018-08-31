@@ -62,7 +62,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">76</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">94</VersionInfo>
+						<VersionInfo Name="Build">95</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -74,7 +74,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Rafael Passarela</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">1.76.0.94</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.76.0.95</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">FBDataCopy</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright">Rafael Passarela</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks">Rafael Passarela</VersionInfoKeys>
